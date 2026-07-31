@@ -1,26 +1,20 @@
 import { httpClient } from '../config/AxiosHelper';
 
-export const processDraftMessage = async (message, userName, signal) => {
+export const processDraftMessage = async (message, signal) => {
     const response = await httpClient.post(
         '/api/v1/ai/process-message',
         { message },
         {
-            headers: {
-                'X-Current-User': userName || 'Anonymous'
-            },
             signal
         }
     );
     return response.data;
 };
 
-export const getReplySuggestions = async (roomId, userName, signal) => {
+export const getReplySuggestions = async (roomId, signal) => {
     const response = await httpClient.get(
         `/api/v1/ai/rooms/${roomId}/suggestions`,
         {
-            headers: {
-                'X-Current-User': userName || 'Anonymous'
-            },
             signal
         }
     );

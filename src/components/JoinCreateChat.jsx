@@ -42,7 +42,7 @@ const JoinCreateChat = () => {
   const [errors, setErrors] = useState({});
   const [loadingAction, setLoadingAction] = useState(null);
   const navigate = useNavigate();
-  const { setRoomId, setCurrentUser, setConnected } = useChatContext();
+  const { setRoomId, setCurrentUser, setConnected, setConnectionStatus } = useChatContext();
   const { user } = useAuth();
 
   const handleChange = (event) => {
@@ -62,6 +62,7 @@ const JoinCreateChat = () => {
     setCurrentUser(user.name);
     setRoomId(room.roomId);
     setConnected(true);
+    setConnectionStatus('connecting');
     navigate('/chat');
   };
 
